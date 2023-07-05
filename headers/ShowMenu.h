@@ -2,6 +2,7 @@
 
 using namespace std;
 void showSignMenu(); //Function Prototype
+void showLoginMenu(); //Function Prototype
 void showMainMenu() {
     cout << "===== AskFM Clone =====" << endl;
     cout << "Menu: " << endl;
@@ -14,6 +15,7 @@ void showMainMenu() {
 
         switch (choice) {
             case 1:
+                showLoginMenu();
                 break;
             case 2:
                 showSignMenu();

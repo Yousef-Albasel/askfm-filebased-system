@@ -7,7 +7,7 @@ using namespace std;
 bool checkAvailability(const string &input, ifstream &file) {
     string line;
     while (getline(file, line)) {
-        if (line.find(input) != string::npos) {
+        if (line.find(','+input+',') != string::npos) {
             return false;
         }
     }
@@ -52,6 +52,7 @@ void showSignMenu() {
             break;
         } catch (const runtime_error &e) {
             cout << e.what() << endl;
+
         }
     }
 

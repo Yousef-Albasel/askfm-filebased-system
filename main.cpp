@@ -5,20 +5,13 @@
  * Student at Faculty of Computers and Artificial Intelligence - Cairo University
  */
 #include <iostream>
-#include <algorithm>
 #include <string>
-#include <map>
-#include <vector>
-#include <deque>
 #include "headers/IDGeneration.h"
 #include "headers/ShowMenu.h"
 #include "headers/AccountHandling.h"
-#define endl '\n'
-#define nl cout<<'\n'
+#include "headers/LoginHandling.h"
 using namespace std;
-// Function Prototype
 
-string IDGeneration();
 
 int main() {
 // Printing Main menu
