@@ -10,10 +10,25 @@
 #include "headers/ShowMenu.h"
 #include "headers/AccountHandling.h"
 #include "headers/LoginHandling.h"
+#include "headers/askQuestion.h"
+#include "headers/answerQuestion.h"
 using namespace std;
 
 
 int main() {
+    cout << "Current working directory: " << filesystem::current_path() << endl;
+
+    ifstream feedCounter;
+    feedCounter.open("../data/feedCounter.txt");
+    string counterForQuestions;
+    if (feedCounter.is_open()) {
+        while (feedCounter >> counterForQuestions) {
+        }
+        feedCounter.close();
+    } else {
+        cerr << "Failed to open file." << std::endl;
+    }
+
 // Printing Main menu
     showMainMenu();
     return 0;

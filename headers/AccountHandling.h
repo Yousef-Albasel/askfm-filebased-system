@@ -1,13 +1,27 @@
 #include <iostream>
 #include <set>
 #include <fstream>
+#include <direct.h>
+#include <filesystem>  // the filesystem library
 
 using namespace std;
+
+bool CreateDirectoryRecursive(std::string const &dirName, std::error_code &err) {
+    err.clear();
+    if (!std::filesystem::create_directories(dirName, err)) {
+        if (std::filesystem::exists(dirName)) {
+            err.clear();
+            return true;
+        }
+        return false;
+    }
+    return true;
+}
 
 bool checkAvailability(const string &input, ifstream &file) {
     string line;
     while (getline(file, line)) {
-        if (line.find(','+input+',') != string::npos) {
+        if (line.find(':' + input + ':') != string::npos) {
             return false;
         }
     }
@@ -73,7 +87,7 @@ void showSignMenu() {
                 noSpaces = false;
 
             bool validDomain = false;
-            for ( auto & domain : domains) {
+            for (auto &domain: domains) {
                 if (email.find(domain) != string::npos && noSpaces) {
                     validDomain = true;
                     break;
@@ -116,7 +130,12 @@ void showSignMenu() {
 
     // Generate a unique id
     string id = IDGeneration();
-    accounts << username << ',' << email << ',' << password << ',' << id << '\n';
+    accounts << ':' << username << ':' << email << ':' << password << ':' << id << '\n';
+    error_code err;
+    string path = "../data/" + id;
+    if (!CreateDirectoryRecursive(path, err))
+        cout << "CreateDirectoryRecursive FAILED, err: " << err.message() << endl;
+
     accounts.close();
     cout << "Account Created Successfully. Your id is: \"" << id << "\".\n";
     showMainMenu();
